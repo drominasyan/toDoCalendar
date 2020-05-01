@@ -1,6 +1,8 @@
 // import { reducer as formReducer } from 'redux-form';
-import toDoList from './toDoList/reducer';
+import listReducer from './toDoList/reducer';
+import searchReducer from './search/reducer';
 
 export default {
-  toDoList,
+  listReducer,
+  searchReducer,
 };

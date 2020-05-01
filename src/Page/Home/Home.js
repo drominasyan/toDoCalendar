@@ -1,12 +1,7 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import Calendar from '../../containers/Calendar';
 
-class Home extends PureComponent {
-  render() {
-    return (
-      <div>Hello Homepage</div>
-    );
-  }
-}
+const Home = () => <Calendar />;
 
 
 export default Home;

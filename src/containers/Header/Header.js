@@ -1,14 +1,60 @@
-import React, { PureComponent } from 'react';
-// import * as PropTypes from 'prop-types';
-// import { push } from 'react-router-redux';
-import Routes from '../../router/routes';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-class Header extends PureComponent {
-	render() {
-		return (
-			<h1>Header ...</h1>
-		);
-  }
+import { AiOutlineSearch } from 'react-icons/ai'; //SearchIcon
+import { calculateToDoProperties, searchByTitle } from '../../Helpers/utility';
+import searchActions from '../../redux/search/actions';
+import './headerStyle.css';
+
+
+const  Header  = (props) => {
+	const { entities, history, searchValueRefrash, searchValue, searchListRefresh } = props;
+
+	const searchToDo = () => {
+		history.push('./toDoList');
+	};
+
+	const changeSearchValue = (e) => {
+		const { value } = e.target;
+		searchValueRefrash(value);
+		const list = searchByTitle(entities, value);
+		searchListRefresh(list);
+	};
+
+	return (
+		<header className="header">
+			<p>{calculateToDoProperties(entities)}</p>
+			<div className="searchBlock">
+				<input placeholder = "Search" value={searchValue} onChange={changeSearchValue} />
+				<span onClick={searchToDo}><AiOutlineSearch /></span>
+			</div>
+		</header>
+	);
+};
+
+
+// Checking Proptypes.
+Header.propTypes = {
+    entities  	 : PropTypes.object.isRequired,
+    history  	 : PropTypes.object.isRequired,
+    searchValue  : PropTypes.string.isRequired,
+    searchValueRefrash  : PropTypes.func.isRequired,
+    searchListRefresh  : PropTypes.func.isRequired,
+};
+
+function mapStateToProps(state) {
+    const { searchReducer : { searchValue }, listReducer : { entities } } = state;
+    return {
+		entities,
+		searchValue,
+    };
 }
 
-export default Header;
+const mapDispatchToProps = {
+	searchValueRefrash : searchActions.searchValueRefrash,
+	searchListRefresh : searchActions.searchListRefresh,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

@@ -1,8 +1,8 @@
-import React, { Component, Suspense, lazy } from 'react';
+import React, { Component, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { defaultLocale } from '../config';
-
-const Home = lazy(() => import('../Page/Home'));
+import Home from '../Page/Home';
+import ToDo from '../Page/ToDoList';
 
 class AppRouter extends Component {
   render() {
@@ -13,6 +13,11 @@ class AppRouter extends Component {
             exact
             path="/homepage"
             render={() => <Home />}
+          />
+          <Route
+            exact
+            path="/toDoList"
+            render={() => <ToDo />}
           />
 					<Route path="/" render={() => (<Redirect to={{ pathname: `/${defaultLocale}` }} />)} />
         </Switch>

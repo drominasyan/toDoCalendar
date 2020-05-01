@@ -1,0 +1,49 @@
+
+.calendar {
+    display: grid;
+    grid-template-columns:repeat(6, 1fr);
+    grid-gap: 1px;
+    background: #80cbc4;
+    border: 1px solid 80cbc4;
+}
+
+.calDataBlock {
+    background-color: white;
+    padding: 10px;
+    height: 100px;
+    position: relative;
+}
+
+.hidden {
+    position: absolute;
+    right: 5px;
+    width: 70%;
+    top: 5px;
+    padding: 10px;
+    font-size: 12px;
+    background: #5b9bd5;
+    display: none;
+    color:white;
+}
+
+.calDataBlock:hover {
+    background-color: #80cbc4;
+    cursor: pointer;
+}
+.calDataBlock:hover .hidden {
+    display: block;
+}
+
+@media only screen and (max-width: 1024px) {
+    .calendar {
+        grid-template-columns:repeat(5, 1fr);
+    }
+}
+@media only screen and (max-width: 768px) {
+    .calendar {
+        grid-template-columns:repeat(3, 1fr);
+    }
+    .hidden {
+        top:25px;
+    }
+}

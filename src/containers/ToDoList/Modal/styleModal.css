@@ -1,0 +1,33 @@
+.popupBody {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    /* width: 70%; */
+}
+
+.popupBody input {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.popupBody button {
+    padding: 10px 35px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.add {
+    background: #5b9bd5;
+    margin-right: 100px;
+}
+
+.cancel {
+    background: rgb(255, 152, 0);
+}
