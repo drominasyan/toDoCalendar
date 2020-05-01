@@ -18,8 +18,10 @@ const  Header  = (props) => {
 
 	const changeSearchValue = (e) => {
 		const { value } = e.target;
+		// Saveing value in redux for controled component (input)
 		searchValueRefrash(value);
 		const list = searchByTitle(entities, value);
+		// Updating Search List on every change
 		searchListRefresh(list);
 	};
 

@@ -30,12 +30,11 @@ export const calculateToDoPropertiesByDay = (entities, key) => {
     const list = entities[key] || [];
     const count  = list.length;
     const incomplateCount = list.filter(item => item.status === statuses.Incomplate).length;
-    return `${count} to do items (${incomplateCount} of which incomplate)`;
+    return { count, incomplateCount };
 };
 
 //Calculating count of to To-Do and complated counts
 export const calculateToDoProperties = (entities) => {
-    // const list = Object.values(entities) || [];
     const list = [];
     Object.keys(entities).forEach(item => {
         list.push(...entities[item]);
@@ -51,6 +50,7 @@ export const searchByTitle = (entities, value) => {
     Object.keys(entities).forEach(item => {
         list.push(...entities[item]);
     });
-    const incomplateCount = list.filter(item => item.title.includes(value));
-    return incomplateCount || [];
+    const incomplateCount = list.find(item => item.title.includes(value));
+    // Returning the first finded value
+    return incomplateCount ? [{ ...incomplateCount }] : [];
 };

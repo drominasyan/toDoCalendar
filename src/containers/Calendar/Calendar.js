@@ -12,7 +12,7 @@ class Calendar extends PureComponent {
     // Methods
     openListPage = (e) => {
         const { history, currentDayRefrash } = this.props;
-        //Data attribute as day
+        //Getting Data attribute as day
         const { id } = e.target.dataset;
         // Action creator updates the current day
         currentDayRefrash(+id);
@@ -24,17 +24,18 @@ class Calendar extends PureComponent {
         //Generating dates from APR 1 to 30
         const dates = generateCalendarDates();
         const { entities } = this.props;
+        //  Calculating To Do and Comleted Counts
+        const calcByID = (id) => calculateToDoPropertiesByDay(entities, id);
         return dates.map(item => (
             <div
-                className="calDataBlock"
+                className={`${calcByID(+item.key).count && 'highlited'} calDataBlock`}
                 key={item.key}
                 data-id={item.key}
                 onClick={this.openListPage}
             >
                 {item.key}
                 <div className="hidden">
-                    {/* Calculating text based on To Do and Comleted Counts */}
-                    {calculateToDoPropertiesByDay(entities, +item.key )}
+                    {`${calcByID(+item.key ).count} to do items (${calcByID(+item.key ).incomplateCount} of which incomplate)`}
                 </div>
             </div>
         ));

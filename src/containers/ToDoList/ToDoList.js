@@ -45,7 +45,8 @@ const ToDoList = (props) =>  {
     };
 
     const { modalVisible, currentDay, list, searchValue, searchList } = props;
-    const enderedList = searchValue ? searchList : list;
+    // Showing Searched List if search input is not empty
+    const listWithSerch = searchValue ? searchList : list;
     return (
         <div>
             <div className="pageHeader">
@@ -56,7 +57,7 @@ const ToDoList = (props) =>  {
                 </div>
             </div>
             <ListTable
-                list={enderedList}
+                list={listWithSerch}
                 removeItem={removeItem}
                 changeStatus={statusChange}
                 searchValue = {searchValue}

@@ -11,7 +11,6 @@ class Root extends PureComponent {
 			<div className = "containter">
 					<Header />
 					<Routes />
-					{/* <Footer /> */}
 			</div>
 		);
    }

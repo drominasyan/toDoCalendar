@@ -26,6 +26,10 @@
     color:white;
 }
 
+.highlited {
+    background-color: #80cbc4;
+}
+
 .calDataBlock:hover {
     background-color: #80cbc4;
     cursor: pointer;
