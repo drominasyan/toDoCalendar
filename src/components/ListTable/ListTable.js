@@ -5,8 +5,8 @@ import './listTableStyle.css';
 
 const  ListTable = (props) => {
 
+    const { list, removeItem, changeStatus } = props;
     const renderTableData = () => {
-        const { list, removeItem, changeStatus } = props;
         return list.map(item => {
            const { title, status, description, id } = item;
            return (
@@ -24,6 +24,10 @@ const  ListTable = (props) => {
            );
         });
     };
+
+    if (!list.length) {
+        return <div>No data</div>;
+    }
 
     return (
         <div>
